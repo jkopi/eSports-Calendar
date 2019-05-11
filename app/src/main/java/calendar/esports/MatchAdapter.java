@@ -175,8 +175,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.ViewHolder> 
             private void notifyMatch(Context context, Match[] matches, AlarmManager alarmManager) {
                 long sec = getInterval( matches[position].getBegin_at().toString());
                 long now = System.currentTimeMillis();
+//                sec - 300000
                 if(now < sec) Log.d("CompareTime", "notifyMatch: Now:" + now + " < Sec: " + sec );
-                alarmManager.set(AlarmManager.RTC_WAKEUP,  sec - 300000, pendingIntent);
+                alarmManager.set(AlarmManager.RTC_WAKEUP,  now + 5000, pendingIntent);
             }
 
             private long getInterval(String milis) {
